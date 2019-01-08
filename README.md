@@ -1,2 +1,3 @@
-# OSH
-Code for the Operating Systems course 
+# Operating Systems (H)
+
+## Repository for code, configurations and other source files.

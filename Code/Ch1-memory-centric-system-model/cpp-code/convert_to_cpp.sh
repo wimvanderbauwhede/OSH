@@ -1,0 +1,10 @@
+perl py2cpp.pl abstract_system_code.py
+perl py2cpp.pl abstract_system_constants.py
+perl py2cpp.pl abstract_system_cpu_decode.py
+perl py2cpp.pl abstract_system_cpu_execute.py
+perl py2cpp.pl abstract_system_cpu_fetch.py
+perl py2cpp.pl abstract_system_cpu_irqs.py
+perl py2cpp.pl abstract_system_encoder.py
+perl py2cpp.pl abstract_system_model.py
+perl py2cpp.pl abstract_system_peripherals.py
+perl py2cpp.pl abstract_system_processor.py

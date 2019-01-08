@@ -1,0 +1,15 @@
+sources=[
+"abstract_system_code.cc",
+"abstract_system_cpu_decode.cc",
+"abstract_system_cpu_execute.cc",
+"abstract_system_cpu_fetch.cc",
+"abstract_system_cpu_irqs.cc",
+"abstract_system_encoder.cc",
+"abstract_system_peripherals.cc",
+"abstract_system_processor.cc",
+"abstract_system_model.cc"
+]
+
+env = Environment(CXX='/opt/local/bin/g++-mp-7',CXXFLAGS=['-std=c++14','-DVERBOSE'])
+
+env.Program('abstract_system_model',sources)
