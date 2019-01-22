@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 A model for a processor-based system. The main difference from the code in the book is that it uses NumPy arrays for performance.
-Furthermore, the model for loading high
+Furthermore, the model for loading high-level code is different as well.
 
 """
 
@@ -30,14 +30,14 @@ def main():
 
 # Command line flags and arguments
     try:
-        opts, args = getopt.getopt(sys.argv[1:],"hPHsN:C:")
+        opts, args = getopt.getopt(sys.argv[1:],"hPHsN:")
     except getopt.GetoptError:
-        print( 'abstract_system_model.py. [-hPHN:sC:]')
+        print( 'abstract_system_model.py. [-hPHN:s]')
         sys.exit(2)
 
     for opt, arg in opts:
       if opt == '-h':
-         print( 'abstract_system_model.py [-hPHc] -N ncycles -C <code file>'+"\n", 
+         print( 'abstract_system_model.py [-hPHc] -N ncycles'+"\n", 
             '-P : with peripherals'+"\n", 
             '-H : high-level (not cycle-accurate)'+"\n",
             '-N : number of cycles to run'+"\n",
