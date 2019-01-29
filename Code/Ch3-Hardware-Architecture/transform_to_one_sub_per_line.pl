@@ -220,7 +220,8 @@ for my $task (sort keys %tasks) { # This should be a subroutine I think
         if ($line=~/^(\w+):/ ) {
             $line=~s/^(\w+)://;
             $line.= 'pc++;';
-        } elsif ( $line=~/goto\s+(\w+)/ ) {
+        } 
+        if ( $line=~/goto\s+(\w+)/ ) {
             my $label=$1;
             my $id = $labels_to_line_numbers{$label};
             if ($line=~/^\s*if\s*\(.+?\)\s+goto/) {

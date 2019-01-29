@@ -25,3 +25,17 @@ INC: ++i2;
     goto INC;
 END: printf("Done\n");
 }
+
+void task3(void) {
+    int i3;
+    int m3[MEM_SZ];
+    i3=0;
+INC: if (m3[0]==0) goto END;
+    printf("%d\n",i2);
+    m2[i2]=i2;
+    if (i2==5) goto END;
+    goto INC;
+END: printf("Done\n");
+}
+
+
