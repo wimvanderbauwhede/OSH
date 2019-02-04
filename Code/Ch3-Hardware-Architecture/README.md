@@ -1,4 +1,4 @@
-# Practical Exercise for Chapter 3 Hardware Architecture
+# Practical Exercise for Chapters 3 and 4
 
 The file `example_tasks.c` contains two tasks written in a restricted form of C which can be converted into code that can be time sliced.
 
@@ -12,21 +12,9 @@ Assumptions on the input:
 
 The converted code uses a program counter (`pc`) to decide which of the subroutines to execute. 
 
-## Blocking IO
-
-To simulate blocking behaviour, we use a global 'blocking_timer' which will decrement. 
-There is also system clock or timer which will increment monotonically.
-Every call will increment this `system_timer`. 
-
-So implementing blocking IO is a matter of setting a blocking timer to some time in the future, and when that time is reached we can unblock the task. 
-
-    void blocking_io (int blocking_time) {
-        blocking_timer = system_timer + blocking_time);
-    }
-
 ## Context switching
 
-Another obvious addition is `save_context()` and `restore_context()`. This is not implemented in the script, I suggest you modify the generated C code. 
+`save_context()` and `restore_context()` are not implemented in the script, so you need to modify the generated C code. 
 
 Context switching requires a task ID, so we need some kind of task_id counter and a way to link the task to its id, the easiest way is to use a macro.
 
@@ -94,4 +82,17 @@ What this will do is simply put these regs in the lower part of the contect, and
     }
     #endif
     }
+
+## Blocking IO
+
+To simulate blocking behaviour, we use a global 'blocking_timer' which will decrement. 
+There is also system clock or timer which will increment monotonically.
+Every call will increment this `system_timer`. 
+
+So implementing blocking IO is a matter of setting a blocking timer to some time in the future, and when that time is reached we can unblock the task. 
+
+    void blocking_io (int blocking_time) {
+        blocking_timer = system_timer + blocking_time);
+    }
+
 
