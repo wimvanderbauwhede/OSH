@@ -44,7 +44,7 @@ void* thread_start(void *vtinfo) {
     // Create the reference
     int* mCref=(int*)malloc(sizeof(int)*mSize);
     for (unsigned int i = 0; i<mSize; i++) {
-            mCref[i]=mA[i]*mA[i]+mB[i]*mB[i];        
+            mCref[i]=w1*mA[i]*mA[i]+w2*mB[i]*mB[i];        
     }
 
     int* mC=(int*)malloc(sizeof(int)*mSize);
