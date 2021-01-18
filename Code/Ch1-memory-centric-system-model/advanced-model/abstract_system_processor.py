@@ -14,7 +14,6 @@ def processorAction(systemState,irqs,registers,cfg):
         (registers,irqs)=checkIrqs(registers,ivt,irqs)
     # fetch the instruction
     ir = fetchInstruction(registers,systemState,cfg)
-#    print(ir)
     # Only do something if we are not waiting for an interrupt
     if not registers[SCR]: 
         if HL:
@@ -22,8 +21,6 @@ def processorAction(systemState,irqs,registers,cfg):
         else:    
             # decode the instruction
             (instr,tup) = decodeInstruction(ir)    
-#        print(instr,tup) 
             # execute the instruction
             (registers,systemState)= executeInstruction(instr,tup, registers,systemState)
-        #print(registers)
     return (systemState,irqs,registers)  
