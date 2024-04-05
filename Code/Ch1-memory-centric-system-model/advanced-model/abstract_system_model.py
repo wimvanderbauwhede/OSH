@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """
-A model for a processor-based system. The main difference from the code in the book is that it uses NumPy arrays for performance.
-Furthermore, the model for loading high-level code is different as well.
-
+A model for a processor-based system. 
+The main difference from the code in the book is that it uses NumPy arrays for performance.
+The model for loading high-level code is different as well.
 """
 
 
@@ -17,7 +17,6 @@ import sys, getopt
 def main():
     global PERIPHERALS, HL
     global hlCode
-#    global alu
 
 # Default settings
     PERIPHERALS=False
@@ -99,7 +98,6 @@ def main():
                 (ssdState,ssdIrq)=ssdAction(ssdState)
                 (gpuState,gpuIrq)=gpuAction(gpuState)
                 (timerState,timerIrq)=timerAction(timerState)
-
                 (systemState,dmaIrq) = dmaAction(systemState)
                 
                 ramState=systemState[0:MEMTOP]
@@ -109,6 +107,7 @@ def main():
 #                systemState = ramState+timerState+kbdState+nicState+ssdState+gpuState # without numpy
                 systemState = np.concatenate((ramState,timerState,kbdState,nicState,ssdState,gpuState,dmaState))
                 timerState = systemState[TIMER:TIMER+timerStateSz-1]
+                # TODO: other peripherals
             else:
                 irqs=[]
 #            print( systemState[CODE:CODE+20] )
