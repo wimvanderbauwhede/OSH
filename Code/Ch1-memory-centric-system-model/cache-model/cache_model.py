@@ -28,9 +28,9 @@ def  evict_location(location_stack):
     return location_stack
     
 def cache_is_full(location_stack_ptr):
-    if location_stack_ptr==0
+    if location_stack_ptr==0:
         return True
-    else
+    else:
         return False    
 
 # If the cache was full, evict first
@@ -58,7 +58,7 @@ def read_from_mem_on_miss(memory,cache,address):
     (loc,location_stack) = get_next_free_location(location_stack)
 # Get the DRAM content and write it to the cache storage    
     for i in range(0,16):
-        cache_line.append( memory[((address>>4)<<4)+i]
+        cache_line.append( memory[((address>>4)<<4)+i])
     cache_storage[loc] = cache_line
 # Update the lookup table and the last used location    
     address_to_cache_loc[address>>4]=loc

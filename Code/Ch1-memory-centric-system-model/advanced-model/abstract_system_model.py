@@ -55,10 +55,10 @@ def main():
 
 # If we use high-level code we need to store it in a separate array 
 # because the NumPy arrays are declared for uint64
-    hlCode=[]
-    if HL:
+    # hlCode=[]
+    # if HL:
         # Fill the code array with no-op functions
-        hlCode=[lambda s,r: (s,r) ]*hlCodeSz
+    hlCode=[lambda s,r: (s,r) ]*hlCodeSz
 
     # Configuration of the model
     cfg=(PERIPHERALS,HL,hlCode)
@@ -84,13 +84,12 @@ def main():
     registers[PC]=CODE
 
 # Initialise the intterupt vector table    
-    ramState[IVT:IVT+IVTsz]=[CODE]*IVTsz # TODO: use IRS addresses
+    ramState[IVT:IVT+IVTsz]=[CODE+18]*IVTsz # TODO: use IRS addresses
 
     (ramState,cfg) = load_code(ramState,cfg)
 
     #systemState = ramState+timerState+kbdState+nicState+ssdState+gpuState
     systemState = np.concatenate((ramState,timerState,kbdState,nicState,ssdState,gpuState,dmaState))
-
     for ncycles in range(0,MAX_NCYCLES):
             if PRINT_CYCLES:
                 print(ncycles)
@@ -109,6 +108,7 @@ def main():
                 
 #                systemState = ramState+timerState+kbdState+nicState+ssdState+gpuState # without numpy
                 systemState = np.concatenate((ramState,timerState,kbdState,nicState,ssdState,gpuState,dmaState))
+                timerState = systemState[TIMER:TIMER+timerStateSz-1]
             else:
                 irqs=[]
 #            print( systemState[CODE:CODE+20] )

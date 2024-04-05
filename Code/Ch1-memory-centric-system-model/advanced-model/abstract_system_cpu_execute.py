@@ -10,7 +10,7 @@ def executeInstruction(instr,args, registers,systemState):
     elif instr==STR:
         (r1,r2,_)=args
         addr2 = registers[r2]
-#        print('Storing ',registers[r1],' in addr ',addr2)
+        # print('Storing ',registers[r1],' in addr ',addr2)
         systemState[addr2]=registers[r1]
     elif instr==PUSH:
         sptr = registers[SP]

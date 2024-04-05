@@ -19,10 +19,12 @@ def gpuAction(gpuState):
     return (gpuState,gpuIrq)  
 
 def timerAction(timerState):
+    # print('timerAction',timerState)
     if timerState[0]>0:
         timerState[0]-=1
     timerIrq=False
     if timerState[0]==0:
+        # print('timerAction: timerIrq SET')
         timerIrq=True
         timerState[0]=timerState[1]
     return (timerState,timerIrq)

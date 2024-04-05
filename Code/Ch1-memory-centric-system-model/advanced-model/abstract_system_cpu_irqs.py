@@ -4,7 +4,7 @@ def checkIrqs(registers,ivt,irqs):
     idx=0
     for irq in irqs:
         if irq :
-            #print("IRQ ",idx," raised!")
+            print("IRQ ",idx," raised!")
             # Clear the WFI status 
             registers[SCR] = 0
             # Save the program counter in the link register

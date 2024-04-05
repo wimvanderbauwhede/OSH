@@ -5,15 +5,15 @@ nicStateSz=0x1000 # 4KB
 ssdStateSz=0x100000 # 1MB
 gpuStateSz=0x80000 # 512KB
 ramStateSz=0xE00000 # 14MB
-dmaStateSz=0x4 # just the 4 registers
+dmaStateSz=0x10 # just the 4 registers
 # High-level code array size
 hlCodeSz=0x1000
 
 # RAM organisation
 IVTsz=16
-heapSz=0x800000
-stackSz=0x400000
-codeSz=0x200000
+heapSz=0x800000 # 8MB
+stackSz=0x400000 # 4MB
+codeSz=0x200000 # 2MB
 
 # OPCODES
 """
@@ -117,7 +117,7 @@ DCR=3
 # next 2MB is code
 IVT=0x0
 HEAP=IVT+IVTsz
-STACK=HEAP+heapSz
+STACK=HEAP+heapSz-IVTsz
 CODE=STACK+stackSz
 MEMTOP=CODE+codeSz
 # Peripheral start addresses
@@ -128,4 +128,3 @@ SSD=NIC+nicStateSz
 GPU=SSD+ssdStateSz
 DMA=GPU+gpuStateSz
 STATETOP=DMA+dmaStateSz
-

@@ -5,9 +5,9 @@ def encodeInstruction(instr,labels):
     arg1=None
     arg2=None
     arg3=None
-    if opcode!=NOP and opcode!=WFI:
+    if opcode!=NOP and opcode!=WFI and opcode!=HLI:
         arg1=instr[1]
-        if opcode!=BL and opcode!=B and opcode!=BX:    
+        if opcode!=BL and opcode!=B and opcode!=BX:
             arg2=instr[2]
             if opcode!=LDR and opcode!=STR and opcode!=CBZ and opcode!=CBNZ and opcode!=MOV and opcode!=SET:
 #                print(instr)
@@ -24,16 +24,20 @@ def encodeInstruction(instr,labels):
         iw=opcode+(arg1<<8)+(arg2<<16)
     elif opcode==NOP or opcode==WFI:
         iw = opcode
+    elif opcode==HLI:
+        iw = (HLI,instr)
     else :    
 #        print(opcode,arg1,arg2,arg3)
         iw = opcode+(arg1<<8)+(arg2<<16)+(arg3<<24)
     return iw
 
+# Returns a list of encoded instructions
 def encodeProgram(instrs):
     pc=0
     labels={}
     encoded_instrs=[]
     for instr in instrs:
+        # print(instr,type(instr))
         encoded_instr=None
         if type(instr)==tuple:
             #print('label ',instr[0],' on line ',pc)
@@ -42,7 +46,6 @@ def encodeProgram(instrs):
             encoded_instr=encodeInstruction(instr_,labels)
         else:    
             encoded_instr=encodeInstruction(instr,labels)
-        #print(pc,encoded_instr)    
         encoded_instrs.append(encoded_instr)
         pc+=1
     return encoded_instrs

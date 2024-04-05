@@ -38,14 +38,19 @@ def decode_3reg_args(ir):
     return (r1,r2,r3)
 
 def decodeInstruction(ir):
-    instr = decode_instr(ir)
-    if instr==LDR or instr==STR or instr==MOV or instr==SET or instr==CBZ or instr==CBNZ:
-        tup=decode_reg_addr_args(ir)
-    elif instr==B or instr==BL or instr==BX:
-        tup = decode_addr_arg(ir)
-    elif instr==NOP or instr==WFI:
-        tup=(None,None,None)
+    # print("decodeInstruction IR:",ir)
+    if type(ir)==list:
+        instr = HLI
+        tup = (ir[1],None,None)
     else:
-        tup=decode_3reg_args(ir)
-    # return as tuple        
+        instr = decode_instr(ir)
+        if instr==LDR or instr==STR or instr==MOV or instr==SET or instr==CBZ or instr==CBNZ:
+            tup=decode_reg_addr_args(ir)
+        elif instr==B or instr==BL or instr==BX:
+            tup = decode_addr_arg(ir)
+        elif instr==NOP or instr==WFI:
+            tup=(None,None,None)
+        else:
+            tup=decode_3reg_args(ir)
+        # return as tuple        
     return (instr,tup)
